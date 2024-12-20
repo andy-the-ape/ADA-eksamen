@@ -109,6 +109,8 @@ public class Opgave3 {
         System.out.print("Mirrored Tree In-order Traversal: ");
         inOrderTraversal(root);
         System.out.println();
+
+        System.out.println("Number of twigs: " + countTwigs(root));
     }
     public static int getHeight(BinaryNode node) {
         if (node == null) {
@@ -290,6 +292,60 @@ public class Opgave3 {
             }
             return true;
         }
+    }
+
+    public static int countTwigs(BinaryNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return countTwigsHelper(root, null, null);
+    }
+
+    private static int countTwigsHelper(BinaryNode node, BinaryNode parent, BinaryNode grandparent) {
+        if (node == null) {
+            return 0;
+        }
+
+        int twigCount = 0;
+
+        if (isTwig(node, parent, grandparent)) {
+            twigCount++;
+        }
+
+        // Recur for left and right subtrees
+        twigCount += countTwigsHelper(node.left, node, parent);
+        twigCount += countTwigsHelper(node.right, node, parent);
+
+        return twigCount;
+    }
+
+    private static boolean isTwig(BinaryNode node, BinaryNode parent, BinaryNode grandparent) {
+        if (node == null || parent == null || grandparent == null) {
+            return false;
+        }
+
+        // Check if node has two children, and both are leaves
+        if (node.left != null && node.right != null &&
+                isLeaf(node.left) && isLeaf(node.right)) {
+
+            // Check if node has no siblings
+            boolean nodeHasNoSiblings = (parent.left == node && parent.right == null) ||
+                    (parent.right == node && parent.left == null);
+
+            // Check if parent has no siblings
+            boolean parentHasNoSiblings = (grandparent.left == parent && grandparent.right == null) ||
+                    (grandparent.right == parent && grandparent.left == null);
+
+            if (nodeHasNoSiblings && parentHasNoSiblings) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean isLeaf(BinaryNode node) {
+        return node.left == null && node.right == null;
     }
 
 }
