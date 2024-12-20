@@ -2,7 +2,7 @@ package eksamen_2023_1;
 
 import java.util.*;
 
-public class Opgave3 {
+public class Opgave3TreeAnalysis {
 
     public static class BinaryNode {
         int value;
