@@ -2,10 +2,9 @@ package eksamen_2023_1;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class Opgave5 {
+public class Opgave5KruskalsAlgoritme {
 
     public static class Edge implements Comparable<Edge> {
         int weight;
