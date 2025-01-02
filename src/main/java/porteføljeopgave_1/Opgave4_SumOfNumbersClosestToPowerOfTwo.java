@@ -10,7 +10,4 @@ public class Opgave4_SumOfNumbersClosestToPowerOfTwo {
     //Hvad er Store-O tidskompleksiteten af din algoritme? Begrund dit svar og diskuter mulighederne for at
     //optimere din løsning yderligere
 
-    public static int sumOfNumbersClosestToPowerOfTwo(int[] arr) {
-        
-    }
 }
